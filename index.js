@@ -5,6 +5,7 @@ let List , id , todoList;
 
 $.ajax({  
     method : "GET",
+    // url: "http://18.117.136.20:5000",  //전송
     url: "http://localhost:5000",  //전송
     dataType:"JSON", 
 })
