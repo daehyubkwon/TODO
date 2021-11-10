@@ -36,10 +36,10 @@ function loadList(array) {
     });
 }
 
-function addToDo(name, id, done) {
+function addToDo(_nm, _id, done) {
     
     const item = `<li class="list-group-item">
-                   ${name}
+                   ${_nm}
                   </li>
                   `;
     const position = "beforeend";
