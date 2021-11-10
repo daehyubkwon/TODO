@@ -32,7 +32,7 @@ function initial() {
 
 function loadList(array) {
     array.forEach(function (item) {
-        addToDo(item.name, item.id, item.done)
+        addToDo(item._nm, item._id, item.done)
     });
 }
 
