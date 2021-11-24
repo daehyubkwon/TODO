@@ -1,12 +1,15 @@
 // http://127.0.0.1:5500/index.html   LIVE SERVER : OPEN WITH LIVE SERVER 
 const list_Selector = document.querySelector(".list-group");
 
-let List , id , todoList; 
+let List , id , todoList;
+let gUrl = "http://18.117.136.20:5000";
+//let gUrl = "http://localhost:5000";
 
+/* 조회 */
 $.ajax({  
     method : "GET",
-    url: "http://18.117.136.20:5000",  //전송    44
-    //url: "http://localhost:5000",  //전송   
+    //url: "http://18.117.136.20:5000",  //전송
+    url: gUrl,  //전송   
     dataType:"JSON", 
 })
 .done(function(data) { 
@@ -15,6 +18,7 @@ $.ajax({
     initial();        
 });
 
+/* 사용자선언함수 */
 function initial() {
     console.log(todoList);
 
@@ -32,7 +36,7 @@ function initial() {
 
 function loadList(array) {
     array.forEach(function (item) {
-        addToDo(item._nm, item._id, item.done)
+        addToDo(item._nm, item._id, item.done) 
     });
 }
 
@@ -45,3 +49,18 @@ function addToDo(_nm, _id, done) {
     const position = "beforeend";
     list_Selector.insertAdjacentHTML(position, item);
 }
+
+$('#saveBtn').click(function() {
+    var tmpNm = $("#bookName").val();
+
+    $.ajax({  
+        method : "GET",
+        //url: "http://18.117.136.20:5000",  //전송
+        url: gUrl+`/add?_nm=${tmpNm}`,  //전송   
+        dataType:"JSON", 
+    })
+    .done(function(data) { 
+        location.reload();
+    });
+    ;
+});
